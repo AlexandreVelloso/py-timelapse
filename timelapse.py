@@ -4,9 +4,6 @@ import os
 folder = 'photos'
 files = [f for f in sorted(os.listdir(folder)) if not f.startswith('.') and not f.startswith('README')]
 
-print(files)
-exit(0)
-
 img_array = []
 
 for filename in files:
@@ -20,9 +17,9 @@ for filename in files:
 
         img_array.append(img)
     except Exception:
-        print('Error in path: ' + path)
+        print(f'Error in path: {path}')
 
-out = cv2.VideoWriter(folder + '.mp4',cv2.VideoWriter_fourcc(*'mp4v'), 20.0, size)
+out = cv2.VideoWriter(os.path.join('output', 'result.mp4'), cv2.VideoWriter_fourcc(*'mp4v'), 20.0, size)
 
 for i in range(len(img_array)):
    out.write(img_array[i])
